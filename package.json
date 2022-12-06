@@ -1,0 +1,11 @@
+{
+  "name": "kalkulator-systemow-2-8-10-16",
+  "version": "1.0.0",
+  "description": "Kalkulator obliczający odpowiedniki liczb w systemach: dwójkowy, dziesiętny, szesnastkowy i ósemkowy ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paweł Podolak",
+  "license": "ISC"
+}
