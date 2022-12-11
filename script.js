@@ -1,90 +1,76 @@
-let select;
-let numberProvided = 59;
-let numberBi = [];
-let numberOct = [];
+let select = 2;
+let numberProvided = window.prompt("Prowide a nuber");
 let numberDeci = 0;
-let numberSede = [3, "b"];
+let numberToCalc = [2, 8, 10, 16];
+let bufor = [];
+let multiple;
 const hex = ["a", "b", "c", "d", "e", "f"];
 
-console.log(5 % 2);
+let universalToDeci = () => {
+  numberProvided = numberProvided.split("");
 
-//2-10
-
-let deciToBi = () => {
-  while (numberProvided >= 1) {
-    numberProvided = Math.floor(numberProvided);
-    numberBi.unshift(numberProvided % 2);
-
-    numberProvided = numberProvided / 2;
-  }
-};
-
-let biToDeci = () => {
-  let bufor = [];
-
-  for (let i = 0; i < numberBi.length; i++) {
-    bufor.unshift(numberBi[i]);
+  for (let i = 0; i < numberProvided.length; i++) {
+    bufor.unshift(numberProvided[i]);
   }
 
   for (i = 0; i < bufor.length; i++) {
-    numberDeci = numberDeci + bufor[i] * 2 ** i;
+    numberDeci = numberDeci + bufor[i] * multiple ** i;
   }
 };
 
-//8-10
+let universalFromDeci = (devide) => {
+  let result = [];
+  bufor = numberDeci;
 
-let deciToOcta = () => {
-  while (numberProvided > 1) {
-    numberProvided = Math.floor(numberProvided);
-    numberOct.unshift(numberProvided % 8);
+  while (bufor >= 1) {
+    bufor = Math.floor(bufor);
 
-    numberProvided = numberProvided / 8;
-  }
-};
-
-let octaToDeci = () => {
-  let bufor = [];
-
-  for (let i = 0; i < numberOct.length; i++) {
-    bufor.unshift(numberOct[i]);
-  }
-
-  for (i = 0; i < bufor.length; i++) {
-    numberDeci = numberDeci + bufor[i] * 8 ** i;
-  }
-};
-
-//16-10
-
-let deciToSede = () => {
-  while (numberProvided > 1) {
-    numberProvided = Math.floor(numberProvided);
-
-    if (numberProvided % 16 > 9) {
-      numberSede.unshift(hex[(numberProvided % 16) - 10]);
+    if (bufor % devide > 9) {
+      result.unshift(hex[(bufor % 16) - 10]);
     } else {
-      numberSede.unshift(numberProvided % 16);
+      result.unshift(bufor % devide);
     }
 
-    numberProvided = numberProvided / 16;
+    bufor = bufor / devide;
+  }
+
+  console.log(`${result.join("")} in a ${devide} system`);
+};
+
+let checkMultiply = () => {
+  if (select == 1) {
+    multiple = 2;
+
+    numberToCalc.splice(0, 1);
+  } else if (select == 2) {
+    multiple = 8;
+
+    numberToCalc.splice(1, 1);
+  } else if (select == 3) {
+    multiple = 10;
+    numberDeci = numberProvided;
+    numberToCalc.splice(2, 1);
+  } else if (select == 4) {
+    multiple = 16;
+
+    numberToCalc.splice(3, 1);
+  }
+
+  console.log(
+    `for the number ${numberProvided} in the ${multiple} system, the counterparts are:`
+  );
+};
+
+let universalCalc = () => {
+  checkMultiply();
+
+  if (multiple != 10) {
+    universalToDeci();
+  }
+
+  for (i = 0; i < numberToCalc.length; i++) {
+    universalFromDeci(numberToCalc[i]);
   }
 };
 
-let sedeToDeci = () => {
-  let bufor = [];
-
-  for (let i = 0; i < numberSede.length; i++) {
-    if (isNaN(numberSede[i])) {
-      bufor.unshift(hex.indexOf(numberSede[i]) + 10);
-    } else {
-      bufor.unshift(numberSede[i]);
-    }
-  }
-
-  for (i = 0; i < bufor.length; i++) {
-    numberDeci = numberDeci + bufor[i] * 16 ** i;
-  }
-};
-
-sedeToDeci();
-console.log(numberDeci);
+universalCalc();
