@@ -1,1 +1,1 @@
-Kalkulator obliczający odpowiedniki liczb w systemach: dwójkowy, dziesiętny, szesnastkowy i ósemkowy 
+Basic program calculating numbers in binary, octal, decimal and hexadecimal systems. Output can be seen in the console. 
