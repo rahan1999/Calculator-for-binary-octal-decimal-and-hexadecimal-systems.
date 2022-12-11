@@ -1,5 +1,7 @@
-let select = 2;
 let numberProvided = window.prompt("Prowide a nuber");
+let select = window.prompt(
+  "In wich system system is the number? (To select type number in brackets) 2 [1], 8[2], 10[3], 16[4]"
+);
 let numberDeci = 0;
 let numberToCalc = [2, 8, 10, 16];
 let bufor = [];
